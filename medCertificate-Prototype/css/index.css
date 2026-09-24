@@ -1,0 +1,15 @@
+
+@media screen and (min-width: 481px){　
+html,body{background:black;color:white}
+.tdDisp{background: black;color:white}
+#r2{border:1px solid white}
+#r3{border:1px solid white}
+#r4{border:1px solid white}
+#r5{border:1px solid white}
+
+#r2c2{border-right:1px solid white}
+#r2c4{border-right:1px solid white}
+#disp11attached{border:1px solid white;color:white;padding:5px}
+#docLength{display:block;display:flex}
+.cb{background:gray;color:white}
+}

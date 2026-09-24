@@ -1,0 +1,31 @@
+@media print {
+#top{display: none}
+#mc0{display: none}
+#mc1{background: white;color:black}
+#z0{background: white;color:black;}
+.tdDisp{background: white;color:black}
+#r5{border:1px solid black}
+#tdDisp0{display:none}
+#td0{display:none}
+.top{display:none;border:none}
+.pbi{color:black}
+.bi{color:black}
+.cb{display:none}
+.modeChange{display:none}
+#tit{color:black}
+#z1{display: none}
+#z2{display: none}
+#r2{border:1px solid black}
+#r3{border:1px solid black}
+#r4{border:1px solid black}
+#r2c2{border-right:1px solid black}
+#r2c4{border-right:1px solid black}
+.page-break {
+    page-break-before: always;
+    break-before: page;
+  }
+#disp11attached{border:1px solid black;color:black;padding:5px}
+#docLength{display:none}
+.disp{color:black;border:none}
+
+}
