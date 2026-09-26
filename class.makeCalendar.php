@@ -66,7 +66,7 @@ class MakeCalendar{
                 echo '<div id="" class="" style="width:100%;height:10%;border:1px solid white;display:flex;
                 align-items:center;justify-content:center">日';
                 echo '</div>';
-                echo '<table id="table'.$this->cN.'" class="" style="width:100%;height:90%;border:2px solid blue;margin:2px">';
+                echo '<table id="table'.$this->cN.'" class="" style="border:2px solid blue;margin:2px">';
                 echo '</table>';
             echo '</div>';
             

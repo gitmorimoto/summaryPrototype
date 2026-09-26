@@ -155,8 +155,9 @@ export function calendarMaker(cN){
             
             let thObj = document.createElement('th');
             let tdObj = document.createElement('td');
-            let wElement = document.createElement('td');
+            //let wElement = document.createElement('td');
             thObj.style.height = "25px";
+            thObj.style.padding = "0";
             console.log('i='+i);
             thObj.id = 'day' + cN + '_'+i;
             thObj.textContent = w[i];
@@ -167,6 +168,12 @@ export function calendarMaker(cN){
         }
         console.log(trObj);
         let tableObj = document.getElementById('table'+cN);
+        console.log(tableObj.outerHTML);
+        console.log('table height:', tableObj.offsetHeight);
+        console.log('table style height:', getComputedStyle(tableObj).height);
+        console.log('tr height:', trObj.offsetHeight);
+        console.log('th height:', trObj.firstElementChild.offsetHeight);
+
         tableObj.appendChild(trObj);
         console.log('tableObj='+tableObj);
         tableObj.style.color="white";

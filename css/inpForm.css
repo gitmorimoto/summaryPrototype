@@ -1,23 +1,54 @@
 @media screen and (min-width: 481px){
 .ind{width:80px;height:30px;border:1px solid white;margin-left:1px}
-table {
-            border-collapse: collapse;
-            width: 400px;
-        }
+   table {
+    border-collapse: collapse;
+    width: 99%;
+    height: auto;
+    table-layout: fixed;
+}
 
-        th, td {
-            border: 1px solid white;
-            padding: 2px;
-            text-align: center;
-            height:25px;
-        }
+th, td {
+    border: 2px solid red;
+    padding: 0;
+    text-align: center;
+    height: 25px;
+    box-sizing: border-box;
+}
 
-        th {
-            background-color: darkblue;
-            height:25px;
-        }
-        tr{width:99%;height:25px;}
+th {
+    background-color: blue;
+    border: 2px solid green;
+}
 
+tr {
+    width:auto;
+    height: 25px;
+    border: none;
+}
 
+/*
+    table {
+                border-collapse: collapse;
+                width: 400px;
+    }
 
+    th, td {
+                border: 2px solid red;
+                padding: 2px;
+                text-align: center;
+                height:25px;
+    }
+
+    th{
+                background-color: blue;
+                height:25px;
+                border:2px solid green;
+    }
+    tr{
+                width:99%;
+                height:25px;
+                border:5px solid red;
+
+    }
+*/
 }
