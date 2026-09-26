@@ -11,7 +11,7 @@ class ContentClass
 	{
 		//echo 'inputBox'.$frameNumber;
 		echo '<div id="inputBox'.$frameNumber.'" class="inputBox" style="width:100%;height:100%;border:5px solid red">';
-				echo '<textarea id="inp'.$frameNumber.'" class="inp" value="v'.$frameNumber.'"  style="width:100%;height:100% ;background:darkgreen;color:white;font-size:31px" value=""></textarea>';
+				echo '<textarea id="inp'.$frameNumber.'" class="inp" value=""  style="width:100%;height:100% ;background:darkgreen;color:white;font-size:31px" value=""></textarea>';
 		echo '</div>';
 	}
 	public function nameAlone($frameNumber)
@@ -58,7 +58,7 @@ class ContentClass
 		
 		echo '<div id="inputBox'.$frameNumber.'" class="inputBox" style="width:100%;height:100%;display:flex;border:5px solid red">';
 		
-				echo '<textarea id="inp'.$frameNumber.'"   value="'.$frameNumber.'" style="width:50%;height:100% ;background:darkgreen;color:white;border-right:1px solid white;font-size:31px"></textarea>';
+				echo '<textarea id="inp'.$frameNumber.'" class="inp"   value="" style="width:50%;height:100% ;background:darkgreen;color:white;border-right:1px solid white;font-size:31px"></textarea>';
 				
 				echo '<div id="referenceBox'.$frameNumber.'" class="referenceBox" style="width:50%;height:100%;overflow-y:scroll">';
 						for($i=0;$i<50;$i++)

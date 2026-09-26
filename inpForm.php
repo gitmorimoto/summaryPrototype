@@ -3,6 +3,7 @@
           // include('classComment.php');
            include('config.php');
            include('class.Content.php');
+           include('class.MakeCalendar.php');
            $contentClassObj=new ContentClass();
          
             $n=50;
@@ -64,17 +65,10 @@
                             case 4:
                             case 5:
                             case 6:
-                            case 14:
                             case 15:
                             case 16:
                                 $contentClassObj->itemAlone($i);
                                 break;
-                               
-                            case 1:
-                            
-                                $contentClassObj->nameAlone($i);
-                                break;
-                                
                             case 2:
                             case 7:
                             case 8:
@@ -90,9 +84,10 @@
                                 $contentClassObj->itemReferrence($i);
                                 break;
                             case 3:
-                            case 17:
+                            case 14:
                             
-                                $contentClassObj->dateMaker($i); 
+                                $obj = new MakeCalendar($i,'600px','350px');
+                                $obj->calendarMaker(); 
                                 break;
                                 
                             

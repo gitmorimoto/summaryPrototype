@@ -1,3 +1,23 @@
 @media screen and (min-width: 481px){
 .ind{width:80px;height:30px;border:1px solid white;margin-left:1px}
+table {
+            border-collapse: collapse;
+            width: 400px;
+        }
+
+        th, td {
+            border: 1px solid white;
+            padding: 2px;
+            text-align: center;
+            height:25px;
+        }
+
+        th {
+            background-color: darkblue;
+            height:25px;
+        }
+        tr{width:99%;height:25px;}
+
+
+
 }

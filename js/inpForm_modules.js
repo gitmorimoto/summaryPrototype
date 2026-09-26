@@ -25,6 +25,7 @@ export function init(){
         let item = document.createElement('div');
         item.textContent = ins;
         item.id = 'ins'+index;
+        item.className = 'ins';
         instructionBoxObj.appendChild( item );
         
     })
@@ -37,12 +38,62 @@ export function init(){
 }
 export function itemSelect(){
     const indObj = document.querySelectorAll('.ind');
+    const insObj = document.querySelectorAll('.ins');
+    let frameObj = document.querySelectorAll('.frame');
+    insObj.forEach(item=>{
+        item.style.display = 'none';
+    })
+    frameObj.forEach(fr=>{
+        fr.style.display = 'none';
+    })
     console.log(indObj);
     indObj.forEach((ind,index)=>{
         console.log(ind);
         ind.addEventListener('click',function(){
-            ind.style.background="orange";
-            console.log(index);
+            
+            if(ind.style.background!="orange"){
+                ind.style.background="orange";
+                frameObj = document.querySelectorAll('.frame');
+                insObj.forEach(item=>{
+                    item.style.display = 'none';
+                })
+                frameObj.forEach(fr=>{
+                    fr.style.display = 'none';
+                })
+                console.log(index);
+                insObj[index].style.display = 'block';
+                frameObj[index].style.display = 'block';
+            }else{
+                ind.style.background="";
+                insObj.forEach(item=>{
+                    item.style.display = 'none';
+                })
+                frameObj.forEach(fr=>{
+                    forEach.style.display = 'none';
+                })
+            }
+            
         })
     })
 }
+
+export function getBackData(){
+    fetch('getBackData.php')
+    .then(res=>res.json())
+    .then(data=>{
+        console.log(data)
+        let inpObj = document.querySelectorAll('.inp');
+        console.log('inpObj='+inpObj);
+        inpObj.forEach((inp,index)=>{
+            console.log('index='+index);
+            console.log('inp='+inp);
+            console.log('inp.value='+inp.value);
+            console.log('data['+index+']='+data[index]);
+            inp.value = data[index];
+        })
+    })
+    .catch((reason) => {
+            console.log(reason);
+    })
+}
+
