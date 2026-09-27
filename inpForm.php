@@ -86,7 +86,7 @@
                             case 3:
                             case 14:
                             
-                                $obj = new MakeCalendar($i,'600px','350px');
+                                $obj = new MakeCalendar($i,600,'350');
                                 $obj->calendarMaker(); 
                                 break;
                                 

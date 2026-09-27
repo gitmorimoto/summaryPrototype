@@ -8,6 +8,7 @@ export function calendarMaker(cN){
     const rObj = document.getElementById('r'+cN);
   //----------------make year list---------------------------------  
     console.log('sObj.id='+sObj.id);
+    //Showa
     sObj.addEventListener('click',function(){
         console.log('sObj is clicked');
         let wYear = 0;
@@ -17,6 +18,7 @@ export function calendarMaker(cN){
         selectYear(jEra);
         //toMonth(wYear);
     })
+    //Heisei
     hObj.addEventListener('click',function(){
         console.log('hObj is clicked');
         let wYear = 0;
@@ -26,6 +28,7 @@ export function calendarMaker(cN){
         selectYear(jEra);
         //toMonth(wYear);
     })
+    //Reiwa
     rObj.addEventListener('click',function(){
         console.log('rObj is clicked');
         let wYear = 0;
@@ -125,7 +128,7 @@ export function calendarMaker(cN){
         console.log('firstDayofWeek='+firstDayofWeek);
         console.log('lastDay='+lastDay);
 
-        makeMonthCalendar(firstDayofWeek,lastDay);
+        makeMonthCalendar(wYear,month,firstDayofWeek,lastDay);
     }
 
     function getMonthDetails(year, month) {
@@ -146,7 +149,7 @@ export function calendarMaker(cN){
             };
     }
 
-    function makeMonthCalendar(firstDayOfWeek,lastDay){
+    function makeMonthCalendar(wYear,month,firstDayOfWeek,lastDay){
         console.log(firstDayOfWeek,lastDay);
         let trObj = document.createElement('tr');
         trObj.style.height="25px";
@@ -177,6 +180,68 @@ export function calendarMaker(cN){
         tableObj.appendChild(trObj);
         console.log('tableObj='+tableObj);
         tableObj.style.color="white";
+
+        makeDaysCalendar(wYear,month,firstDayOfWeek,lastDay);
+    }
+
+    function makeDaysCalendar(wYear,month,firstDayOfWeek,lastDay){
+        console.log(firstDayOfWeek,lastDay);
+        const daysArray = [];
+        let j=1;
+        for(let i=0;i<(firstDayOfWeek);i++){
+            //console.log('i='+i);
+            daysArray[i]="";
+            //console.log('daysArray['+i+']='+daysArray[i]);
+        }
+        for(let i=(firstDayOfWeek);i<(lastDay+firstDayOfWeek);i++){
+            daysArray[i] = j;
+            j++;
+        }
+        console.log(daysArray);
+        let tableObj = document.getElementById('table'+cN);
+        
+        
+        let r=0;
+        do{
+            let trObj = document.createElement('tr');
+            trObj.id = 'tr'+ cN + '_'+ r;
+            for(let i=0+r*7;i<(7+r*7);i++){
+                console.log('i='+i);
+                let tdObj = document.createElement('td');
+                tdObj.id = 'td'+ cN +'_'+i;
+                tdObj.className = 'td'+ cN;
+                tdObj.textContent = daysArray[i];
+                console.log('tdObj.textContent='+tdObj.textContent);
+                console.log('trObj.outerHTML='+trObj.outerHTML);   
+                trObj.appendChild(tdObj);
+                console.log('trObj.outerHTML='+trObj.outerHTML);
+            }
+            tableObj.appendChild(trObj);
+            r++;
+            console.log('lastDay='+lastDay);
+            console.log('r*7='+r*7);
+        }while((r*7<lastDay))
+        
+        selectDay(wYear,month);
+    }
+
+    function selectDay(wYear,month){
+        console.log('selectDay');
+        let tdArrayObj = document.querySelectorAll('.td'+ cN);
+        tdArrayObj.forEach(t=>{
+            t.addEventListener('click',function(){
+                t.style.backgroundColor="orange";
+                let selDay = t.textContent;
+                console.log(wYear,month,selDay);
+                month = ('0' + month).slice(-2);
+                selDay = ('0' + selDay).slice(-2);
+                console.log(wYear,month,selDay);
+                let result = wYear+'-'+month+'-'+selDay;
+                const inpObj = document.getElementById('inp'+cN);
+                inpObj.value = result;
+            })
+        })
+        
     }
 
 

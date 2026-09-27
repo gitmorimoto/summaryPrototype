@@ -12,9 +12,11 @@ class MakeCalendar{
 	}
 
     public function calendarMaker(){
+        echo '<textarea id="inp'.$this->cN.'" class ="inp"
+         style="width:200px;height:50px;font-size:28px"></textarea>';
         echo '<div id="calendarContainer'.$this->cN.'" 
-        style="width:'.$this->w.';height:'.$this->h.';
-        border:1px solid red;color:white;display:flex" >';
+        style="width:'.$this->w.'px;height:'.$this->h.'px;
+        border:1px solid white;color:white;display:flex" >';
             echo '<div id="eraConteiner'.$this->cN.'" class="eraConteiner" 
                 style="width:10%;height:100%;border:1px solid white;
                 margin:2px;">';
@@ -62,7 +64,7 @@ class MakeCalendar{
                     }
                 echo '</div>';
             echo '</div>';
-            echo '<div id="" class="dayContainer" style="width:50%;height:100%;border:;margin:2px">';
+            echo '<div id="" class="dayContainer" style="width:'.(0.5*($this->w)).'px;height:100%;border:;margin:2px">';
                 echo '<div id="" class="" style="width:100%;height:10%;border:1px solid white;display:flex;
                 align-items:center;justify-content:center">日';
                 echo '</div>';
