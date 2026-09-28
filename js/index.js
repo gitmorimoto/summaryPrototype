@@ -7,13 +7,13 @@ import {stage3}  from './modules.js';
 import {stage4}  from './modules.js';
 import {getForwardData}   from './modules.js';
 import {confirm}   from './modules.js';
+import {calAge} from './modules.js';
 window.addEventListener('DOMContentLoaded',function(){
     console.log('js');
 // medcertificatePrototype;
 ///////////////////////////list of contents/////////////////////////////////////
 
-///////////////////////test////////////////////////////////////
-//test();
+
 //////////////////////variables////////////////////////////////////////
 let topObj = this.document.getElementById('top');
 let midObj = this.document.getElementById('mid');
@@ -57,33 +57,6 @@ let tempData = [];
 
 //////////////functions///////////////////////////////////
 
-function calAge(bday,wday)
-{
-        // 生年月日をDateオブジェクトに変換
-        const bObj = new Date(bday);
-        const wObj=new Date(wday);
-        // 現在の年、月、日を取得
-        let age = wObj.getFullYear() - bObj.getFullYear();
-        const monthDiff = wObj.getMonth() - bObj.getMonth();
-        // 生まれた月よりも今月が前か、または生まれた月と今月が同じだが誕生日がまだ来ていない場合、年齢を1歳減らす
-        if (monthDiff < 0 || (monthDiff === 0 && wObj.getDate() < bObj.getDate())) {
-                    age--;
-        }
-        return age;
-}
-
-    // 西暦を和暦で表示する関数
-function toWareki(dateStr) {
-  const date = new Date(dateStr);
-
-  // Intl.DateTimeFormat を使って和暦表示に変換
-  return new Intl.DateTimeFormat('ja-JP-u-ca-japanese', {
-    era: 'long',     // 「令和」など
-    year: 'numeric', // 「7年」など
-    month: 'long',   // 「11月」
-    day: 'numeric'   // 「1日」
-  }).format(date);
-}
 
 function getSelCase(selPath)
 {
@@ -328,7 +301,8 @@ function dataToDate(data)
 
 ////////////////////initial setting/////////////////////////////////
 getForwardData();
-confirm();
+test();
+confirm(calAge);
 //----------------------get reference------------------------------
    this.fetch('getReference.php')
    

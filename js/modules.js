@@ -1,9 +1,32 @@
 export function test(){
     console.log('module test');
     const tdObj = document.querySelectorAll('.td');
-    tdObj.forEach(element => {
+    let testData = [
+            '111',
+            '山田太郎',
+            '男',
+            '2000-04-11',
+            '',
+            '798-1332',
+            '愛媛県北宇和郡鬼北町大字出目２０００－１',
+            '軽度知的障害',
+            'ADHD',
+            '自閉スペクトラム症',
+            '発達性協調運動障害',
+            '',
+            '',
+            '',
+            'これはテストです。',
+            '2026-09-28',
+            '旭川荘南愛媛病院',
+            '小児神経科',
+            '森本武彦'
+        ]
+        
+    tdObj.forEach((element,index) => {
         console.log(element);
-        element.value = element.id;
+        //element.value = element.id;
+        element.value = testData[index];
     });
 }
 export function back()
@@ -185,10 +208,12 @@ export function getForwardData(){
     .then(res=>res.json())
     .then(data => {
         console.log(data);
-        let tdObj = document.querySelectorAll('.td');
-        tdObj.forEach((t,index)=>{
-            t.value = data[index];
-        })
+        if(data.length!==0){
+            let tdObj = document.querySelectorAll('.td');
+            tdObj.forEach((t,index)=>{
+                t.value = data[index];
+            })
+        }
     })
     .catch(error => {
     console.error(error);
@@ -196,8 +221,8 @@ export function getForwardData(){
 
 }
 
-export function confirm(){
-    ///////////////////////confirm///////////////////////////////////////////////////////////////
+export function confirm(calAge){
+   
     const confObj=document.getElementById('conf');
     let Text = "";
     confObj.addEventListener('click',function(){ 
@@ -211,7 +236,7 @@ export function confirm(){
         dispObj.forEach((d,index)=>{
             d.textContent= tdObj[index].value;
             tdArray.push(tdObj[index].value);
-            if(index==11){
+            if(index==14){
                 Text = tdObj[index].value;
             }
             
@@ -219,25 +244,28 @@ export function confirm(){
         
         console.log(tdArray);
         keepTemp(tdArray);
-
-        let age=calAge(tdArray[3],tdArray[14]);
+        //calAge(tdArray[3],tdArray[15]);
+        let age=calAge(tdArray[3],tdArray[15]);
         let day3 = toWareki(tdArray[3]);
-        let day14 = toWareki(tdArray[14]);
+        let day15 = toWareki(tdArray[15]);
         tdArray[3]=day3;
-        tdArray[14]=day12;
+        tdArray[15]=day15;
         tdArray[4]=age;
         console.log('age='+age);
-
-        for(let j=0;j<16;j++ )
+        const keepDisp = [];
+        for(let j=0;j<19;j++ )
         {
             keepDisp[j] = dispObj[j].innerHTML;
             console.log('keepDisp['+j+']='+keepDisp[j]);
-            if(j==11)
+            if(j==14)
             {
-                console.log('keepDisp[11]='+keepDisp[11]);
-                input = dispObj[11].querySelector('textarea');
+                console.log('keepDisp[14]='+keepDisp[14]);
+                console.log('dispObj[14].innerHTML='+dispObj[14].innerHTML);
+                console.log('dispObj[14].outerHTML='+dispObj[14].outerHTML);
+                const input = dispObj[14].textContent;
+                console.log('input ='+ input);
                 const fixed = input.value.replace(/\\n/g, '\n');
-                dispObj[11].textContent=fixed;
+                dispObj[14].textContent=fixed;
             }else{
                 dispObj[j].textContent=tdArray[j];
             }
@@ -246,8 +274,8 @@ export function confirm(){
         paginateText(
         Text,
         [
-            document.getElementById("disp11"),
-            document.getElementById("disp11attached")
+            document.getElementById("disp14"),
+            document.getElementById("disp14attached")
         ]
         );
     })
@@ -274,4 +302,32 @@ export function confirm(){
             console.error(error);
         })     
     }
+}
+
+export function calAge(bday,wday)
+{
+        // 生年月日をDateオブジェクトに変換
+        const bObj = new Date(bday);
+        const wObj=new Date(wday);
+        // 現在の年、月、日を取得
+        let age = wObj.getFullYear() - bObj.getFullYear();
+        const monthDiff = wObj.getMonth() - bObj.getMonth();
+        // 生まれた月よりも今月が前か、または生まれた月と今月が同じだが誕生日がまだ来ていない場合、年齢を1歳減らす
+        if (monthDiff < 0 || (monthDiff === 0 && wObj.getDate() < bObj.getDate())) {
+                    age--;
+        }
+        return age;
+}
+
+    // 西暦を和暦で表示する関数
+function toWareki(dateStr) {
+  const date = new Date(dateStr);
+
+  // Intl.DateTimeFormat を使って和暦表示に変換
+  return new Intl.DateTimeFormat('ja-JP-u-ca-japanese', {
+    era: 'long',     // 「令和」など
+    year: 'numeric', // 「7年」など
+    month: 'long',   // 「11月」
+    day: 'numeric'   // 「1日」
+  }).format(date);
 }
