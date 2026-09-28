@@ -5,35 +5,15 @@ import {stage1}  from './modules.js';
 import {stage2}  from './modules.js';
 import {stage3}  from './modules.js';
 import {stage4}  from './modules.js';
+import {getForwardData}   from './modules.js';
+import {confirm}   from './modules.js';
 window.addEventListener('DOMContentLoaded',function(){
     console.log('js');
 // medcertificatePrototype;
 ///////////////////////////list of contents/////////////////////////////////////
-/*
-variables
-functions
-getreference
-initial setting
-test run
-open inpBox
-frame selection
-address
-confirm
-calendar
-store
-recover
-show all and case selection
-select case from database  by id 
-clear dispObj
-return to top
-forward
-diagnosis font
-comment font
-resize page
-name maker
-*/
+
 ///////////////////////test////////////////////////////////////
-test();
+//test();
 //////////////////////variables////////////////////////////////////////
 let topObj = this.document.getElementById('top');
 let midObj = this.document.getElementById('mid');
@@ -270,9 +250,9 @@ function makeFamilyName(fName)
         console.error(error);
      })            
         
- }   
+}   
             
- function makePersonalName(pName)
+function makePersonalName(pName)
 {
     this.fetch('getPName.php',{
         method:'POST',
@@ -307,7 +287,7 @@ function makeFamilyName(fName)
         console.error(error);
      })            
         
- }   
+}   
         
 function calculateAge(birthDate, recordDate)
 {
@@ -345,44 +325,11 @@ function dataToDate(data)
     return formed;
 }
 
-function keepTemp(tdArray)
-{
-    //console.log(tdArray);
-    fetch('makeTempData.php',{
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-            body: JSON.stringify(tdArray)
-    }).then(response => {
-        if (!response.ok) {
-            throw new Error("ネットワークのエラーが発生しました");
-        }
-            return response.json();
-    })
-    .then(data => {
-        console.log(data);
-        /*
-        let i=0;
-        Object.entries(data).forEach(([key, value]) => {
-            nameListObj[i] = document.getElementById('nameList1_'+i);
-            nameListObj[i].textContent = key;
-            console.log(key);
-            console.log(value);
-            i++;
-            
-        })
-        */
-            
 
-            
-    })
-     .catch(error => {
-        console.error(error);
-     })     
-}
 ////////////////////initial setting/////////////////////////////////
-   //----------------------get reference------------------------------
+getForwardData();
+confirm();
+//----------------------get reference------------------------------
    this.fetch('getReference.php')
    
         .then(response => {
@@ -431,77 +378,6 @@ function keepTemp(tdArray)
   
     
 //////////////////////////data from clientManager/////////////////////////
-/*    
-this.fetch('checkClientManager.php')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error("ネットワークのエラーが発生しました");
-        }
-            return response.json();
-    })
-    .then(data => {
-        console.log(data);
-       
-            //console.log(index);
-        for(let i=0;i<data.length;i++)
-        {
-
-            tdObj[i] = document.getElementById('td'+i);
-            console.log(tdObj[i].value);
-            switch(i)
-            {
-                case 0:
-                    console.log(data[1]);
-                    if(data[1])
-                    {
-                        tdObj[0].value = data[1];
-                    }
-                    
-                    console.log(tdObj[0].value);
-                    break;
-                case 1:
-                    console.log(data[3]);
-                    console.log(data[5]);
-                    tdObj[1].value = data[3]+data[5];
-                    console.log(tdObj[1].value);
-                    break;
-                case 2:
-                    console.log(data[6]);
-                    tdObj[2].value = data[6];
-                   break;
-                case 3:
-                    tdObj[3].value = data[7];
-                   break;
-                case 4:
-                    tdObj[4].value = "";
-                   break;
-                case 5:
-                    tdObj[5].value = data[8];
-                   break;
-                case 6:
-                    tdObj[6].value = data[9];
-                   break;
-                default:
-                   break;
-            }
-        }
-                   
-    })
-     .catch(error => {
-        console.error(error);
-     })
-
-    */
-  //////////////////////test run///////////////////////////////////////////////////////////
-  /*
-    for(let i=0;i<16;i++ )
-    {
-        inpObj[i]=document.getElementById('inp'+i);
-        inpObj[i].value="test"+i;
-    }
-        */
-  
-
 
 
 ////////////////////open inpBox//////////////////////////////////////////////
@@ -581,300 +457,13 @@ inpObj[5].addEventListener('input',postNumber);
 				
  }
 */
-///////////////////////confirm///////////////////////////////////////////////////////////////
-const confObj=document.getElementById('conf');
-let Text = "";
-confObj.addEventListener('click',function(){ 
-    confObj.style.background="orange";
-    
-   
- //--------------------------------------------------------------------------------------
-    for(let i=0;i<16;i++)
-    {
-        tdObj[i]=document.getElementById('td'+i);
-        dispObj[i]=document.getElementById('disp'+i);
-        tdArray[i]=tdObj[i].value;
-        if(i==11)
-        {
-            Text = tdObj[i].value;
-        }  
-    }
-   // console.log(tdArray);
-    keepTemp(tdArray);
-    let age=calAge(tdArray[3],tdArray[12]);
-    let day3 = toWareki(tdArray[3]);
-    let day12 = toWareki(tdArray[12]);
-    tdArray[3]=day3;
-    tdArray[12]=day12;
-    tdArray[4]=age;
-    console.log('age='+age);
-    for(let j=0;j<16;j++ )
-    {
-        keepDisp[j] = dispObj[j].innerHTML;
-        console.log('keepDisp['+j+']='+keepDisp[j]);
-        if(j==11)
-        {
-            console.log('keepDisp[11]='+keepDisp[11]);
-            input = dispObj[11].querySelector('textarea');
-            const fixed = input.value.replace(/\\n/g, '\n');
-            dispObj[11].textContent=fixed;
-        }else{
-            dispObj[j].textContent=tdArray[j];
-        }
-        
-    }
 
-   paginateText(
-    Text,
-    [
-        document.getElementById("disp11"),
-        document.getElementById("disp11attached")
-    ]
-    );
+   
     
         
-})
-////////////////////////// calendar///////////////////////////////////////////////////////////////////////
-  ////////////////////calendar maker//////////////////////////////////////////////////////////////
-  /*
-  
-  dateFrameArray = [3,12];
-  let wrapWarekiObj = [];
-  let wrapSeirekiObj = [];
-  
-  let warekiYearObj = [];
-  let  year = [];
-  let month = [];
-  let nengo = [];
-  let showaObj = [];
-  let heiseiObj = [];
-  let reiwaObj = [];
-  let seirekiObj = [];
-  let seirekiYearObj = [];
-  let cellMObj = [];
-  let cellDObj = [];
-  let day = [];
-  
-  let mObj = [];
-  let cObj = [];
-  let cell1Obj = document.getElementsByClassName('cell1_1');
-  let cell8Obj = document.getElementsByClassName('cell8_1');
-  for(let i=0;i<dateFrameArray.length;i++)
-  {
-    let fN=dateFrameArray[i];
-    //console.log('fN='+fN);
-    wrapWarekiObj[fN]=document.getElementById('wrapWareki'+fN);
-    //console.log(wrapWarekiObj[fN]);
-    wrapSeirekiObj[fN]=document.getElementById('wrapSeireki'+fN);
-    wrapWarekiObj[fN].style.display="none";
-	wrapSeirekiObj[fN].style.display="block";
-	year[fN]=0;
-	nengo[fN]="";
-    seirekiObj[fN]=document.getElementById('seireki'+fN);
-	seirekiObj[fN].addEventListener('click',function(){
-    	seirekiObj[fN].style.background="orange";
-    	wrapWarekiObj[fN].style.display="none";
-    	wrapSeirekiObj[fN].style.display="block";
-    	showaObj[fN].style.background="";
-    	heiseiObj[fN].style.background="";
-    	reiwaObj[fN].style.background="";
-    	nengo[fN]='w';
-	})
-    showaObj[fN]=document.getElementById('showa'+fN);
-	showaObj[fN].addEventListener('click',function(){
-    	showaObj[fN].style.background="orange";
-    	wrapWarekiObj[fN].style.display="block";
-    	wrapSeirekiObj[fN].style.display="none";
-    	seirekiObj[fN].style.background="";
-    	heiseiObj[fN].style.background="";
-    	reiwaObj[fN].style.background="";
-    	nengo[fN]='s';
-	})
-    heiseiObj[fN]=document.getElementById('heisei'+fN);
-	heiseiObj[fN].addEventListener('click',function(){
-    	heiseiObj[fN].style.background="orange";
-    	seirekiObj[fN].style.background="";
-    	wrapWarekiObj[fN].style.display="block";
-    	wrapSeirekiObj[fN].style.display="none";
-    	showaObj[fN].style.background="";
-    	reiwaObj[fN].style.background="";
-    	nengo[fN]='h';
-	})
-    reiwaObj[fN]=document.getElementById('reiwa'+fN);
-	reiwaObj[fN].addEventListener('click',function(){
-    	reiwaObj[fN].style.background="orange";
-    	heiseiObj[fN].style.background="";
-    	seirekiObj[fN].style.background="";
-    	wrapWarekiObj[fN].style.display="block";
-    	wrapSeirekiObj[fN].style.display="none";
-    	showaObj[fN].style.background="";
-    	nengo[fN]='r';
-	})
 
 
 
-    seirekiYearObj[fN]=document.getElementsByClassName('seirekiYear'+fN);
-
-	for(let i=0;i<seirekiYearObj[fN].length;i++)
-	{
-
-    	seirekiYearObj[fN][i].addEventListener('click',function(){
-        	clearSYear(fN);
-        	seirekiYearObj[fN][i].style.background="orange";
-        	year[fN]=seirekiYearObj[fN][i].innerText;
-           // console.log('syear['+fN+']='+year[fN]);
-    	})
-	}
-    warekiYearObj[fN]=document.getElementsByClassName('warekiYear'+fN);
-	for(let i=0;i<warekiYearObj[fN].length;i++)
-	{
-    	warekiYearObj[fN][i].addEventListener('click',function(){
-       	 	clearWYear(fN);
-       	 	warekiYearObj[fN][i].style.background="orange";
-       	 	let wYear=warekiYearObj[fN][i].innerText;
-        	console.log('wYear='+wYear);
-   
-        	switch(nengo[fN])
-        	{
-            	case 's':
-                	year[fN]=Number(wYear)+1925;
-               
-                	break;
-            	case 'h':
-                	year[fN]=Number(wYear)+1988;
-                	break;
-            	case 'r':
-                	year[fN]=Number(wYear)+2018;
-                	break;
-            	case 'w':
-                	year[fN]=year;
-                	break;
-
-       	 	}
-        // console.log('year['+fN+']='+year[fN]);
-     	})
-    
-	}
-
-	function clearWYear(fN)
-	{
-    	for(let i=0;i<warekiYearObj[fN].length;i++)
-    	{
-        	warekiYearObj[fN][i].style.background="";
-    	}
-	}
-	function clearSYear(fN)
-	{
-    	for(let i=0;i<seirekiYearObj[fN].length;i++)
-    	{
-        	seirekiYearObj[fN][i].style.background="";
-    	}
-	}
-
-
-//------------------month selection---------------------------------------------------------------------------
-	
-	
-	for (let i = 0; i < 12; i++) {
-    cellMObj[fN] = [];
-    cellMObj[fN][i] = document.getElementById('cell' + fN + '_0_' + i);
-
-    cellMObj[fN][i].addEventListener('click', function () {
-        //console.log('cell' + fN + '_0_' + i);
-        //console.log('i=' + i);
-        //console.log(cellMObj[fN][i]);
-
-        // you can also use `this` instead of cellMObj[fN][i]
-        this.style.background = "orange";
-
-        month[fN] = this.innerText;
-        //console.log('month1=' + month[fN]);
-
-        makeCalendar(year[fN], month[fN]);
-    });
-	}
-
-
-//-----------------days of month----------------------------------------------------------------------------
-	function makeCalendar(year,month)
-	{
-        //console.log('year='+year+',month='+month);
-        let monthDetail = [];
-        let firstDayofWeek = [];
-        let  lastDay = [];
-        monthDetail=getMonthDetails(year,month);
-        firstDayofWeek=monthDetail.firstDayOfWeek;
-        lastDay=monthDetail.lastDay;
-     
-        lastDay=lastDay.getDate();
-        //console.log('firstDay1ofWeek='+firstDay1ofWeek);
-        //console.log('lastDay1='+lastDay1);
-
-        completeCalendar(firstDayofWeek,lastDay);
-	}
-
-//JavaScript を使用して、特定の年と月の最初の日と最後の日、その曜日を取得するには、Date オブジェクトを利用します。以下のコードでその実装方法を示します：
-
-function getMonthDetails(year, month) {
-    // 月の最初の日
-    const firstDay = new Date(year, month - 1, 1); // 月は 0-indexed（1月が 0、2月が 1、…）
-    const firstDayOfWeek = firstDay.getDay(); // 曜日を取得
-    
-    const lastDay = new Date(year, month, 0); // 翌月の0日目 = 指定月の最終日
-    const lastDayOfWeek = lastDay.getDay(); // 曜日を取得
-    return {
-        firstDay: firstDay,
-        firstDayOfWeek,
-        lastDay: lastDay,
-        lastDayOfWeek,
-    };
-}
-function completeCalendar(firstDayofWeek,lastDay)
-{
-        //let cell1Obj=[];
-        let d=1;
-        //console.log('firstDay1ofWeek='+firstDay1ofWeek);
-        //console.log('lastDay='+lastDay1);
-       // cell1Obj=document.getElementsByClassName('cell1_1');
-        //console.log(Object.keys(cell1Obj));
-        for(let i=firstDayofWeek;i<lastDay+firstDayofWeek;i++)
-        {
-            //cell1Obj[i].style.background="orange";
-			cellDObj[fN] = [];
-            cellDObj[fN][i]=document.getElementById('cell' + fN + '_1_' +i );
-            cellDObj[fN][i].textContent=d;
-            d++;
-                 
-        }
-}
-cellDObj[fN] = this.document.getElementsByClassName('cell'+fN+'_1');
-for(let i=0;i<cellDObj[fN].length;i++)
-{
-	if(!cellDObj[fN][i].textContent)
-	{
-		cellDObj[fN][i].style.background="";
-	}
-}
-//let numOfdDays = 
-//console.log(cellDObj[fN].length);
-for(let i=0;i<cellDObj[fN].length;i++)
-{
-	cellDObj[fN][i] = document.getElementById('cell' + fN + '_1_' + i);
-		
-    cellDObj[fN][i].addEventListener('click',function(){
-        this.style.background="orange";
-        day[fN]=this.innerText;
-        month[fN]=('0'+month[fN]).slice(-2);
-        day[fN]=('0'+day[fN]).slice(-2);
-        //console.log('day1='+ day[fN]);
-		inpObj[fN]=document.getElementById('inp'+fN);
-        inpObj[fN].value=year[fN]+'-'+month[fN]+'-'+day[fN];
-
-    })
-}
-}
-
-*/
 ///////////////////////store/////////////////////////////////////////////////////
 let storeObj=document.getElementById('store');
 
@@ -1113,34 +702,13 @@ searchObj.addEventListener('click',function(){
 
 
 ///////////////////////Modification///////////////////////////////////////////
-/*
-for(let i=0;i<16;i++)
-{
-    if(i==0)
-    {
-        frameObj[0].style.display="block";
-    }else{
-        frameObj[i].style.display="none";
-    }
-}
-*/
+
 /////////////////////////////clear dispObj////////////////////////////////////////////////
 
 let delObj=document.getElementById('del');
 delObj.addEventListener('click',function(){
     window.location.reload();
-    /*
-    for(let i=0;i<16;i++ )
-    {
-        dispObj[i]=document.getElementById('disp'+i);
-        dispObj[i].innerHTML = keepDisp[i];
-        recoverObj.style.background = "";
-        confObj.style.background = "";
-        //tdObj[i]=document.getElementById('td'+i);
-        //tdObj[i].value=tdArray;
-    
-    }
-        */
+   
     
 })
 
@@ -1161,70 +729,7 @@ toTopObj.addEventListener('click',function(){
 
 
 
- ///////////////////////forward///////////////////////////////////////////////////////////////
-/*
-    
-    forwardObj.addEventListener('click',function(){
-        stage2();
-        console.log('forward');
-      //  storeReference(); //item is registered to item memory
-        forward();
-    })
-
-    
-
-    function forward()
-    {
-        
-        //console.log('tdObj='+tdObj.length);
-        for(let i=0;i<16;i++)
-        {
-            tdObj[i]=document.getElementById('td'+i);
-            console.log('tdObj['+i+']='+tdObj[i]);
-            inpObj[i]=document.getElementById('inp'+i);
-            tdObj[i].value=inpObj[i].value;
-            inpData[i]=inpObj[i].value;
-            switch(i)
-            {
-                case 2:
-                case 7:
-                case 8: 
-                case 9:  
-                case 10:  
-                case 13:  
-                case 14: 
-                case 15:
-                    makeReference(i,inpObj[i].value);
-                    break;
-                default:
-                    break;
-            }
-            
-        }
-        console.log('inpData='+inpData);
-        fetch('tempInpData.php',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(inpData)
-            })
-            .then((res) => {
-                if (!res.ok) {
-                    throw new Error(`${res.status} ${res.statusText}`);
-                }
-                return res.json();
-            })
-            .then(data => {
-                console.log(data);
-            }
-            )
-            .catch((reason) => {
-                console.log(reason);
-            });
-    }
-*/
+ 
     /////////////////////////////////////////diagnosis font///////////////////////////////////////////////////////////
     let r4Obj = document.getElementById('r4');
     let r5Obj = document.getElementById('r5');

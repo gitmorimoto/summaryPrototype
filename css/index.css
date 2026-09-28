@@ -13,5 +13,5 @@ html,body{background:black;color:white}
 #docLength{display:block;display:flex}
 .cb{background:gray;color:white}
 .comment{padding:20px;box-sizing: border-box;overflow: hidden;}
-.ind{width:80px;height:40px;margin:2px;border:1px solid white}
+
 }

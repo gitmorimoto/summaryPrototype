@@ -1,16 +1,16 @@
 export function calendarMaker(cN){
-    console.log('calendar_modules.js')
+    //console.log('calendar_modules.js')
     let jEra ="";
+    const sObj = document.getElementById('s'+ cN);
     
-    
-    const sObj = document.getElementById('s'+cN);
-    const hObj = document.getElementById('h'+cN);
-    const rObj = document.getElementById('r'+cN);
+    const hObj = document.getElementById('h'+ cN);
+    const rObj = document.getElementById('r'+ cN);
   //----------------make year list---------------------------------  
-    console.log('sObj.id='+sObj.id);
+    //console.log('sObj.id='+sObj.id);
     //Showa
+    console.log('sObj='+sObj);
     sObj.addEventListener('click',function(){
-        console.log('sObj is clicked');
+        console.log('syObj is clicked');
         let wYear = 0;
         sObj.style.backgroundColor = "orange"
         jEra = 's';

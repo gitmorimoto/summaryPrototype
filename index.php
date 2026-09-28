@@ -25,7 +25,7 @@
             	
             <div id="topc0" class="top" style="width:15%;height:99% ;display:flex;border:">
                 <span>ID:</span>
-                <div id="disp0" class="disp" style="width:70%;heitht:80%;display:">
+                <div id="disp0" class="disp" style="width:70%;height:80%;display:">
                         <input type="text" name="sid" id="td0" class="td" value="" 
                         style="width:95%;height:99%;background:darkgreen ;color:white">
                 </div>
@@ -179,13 +179,8 @@
                            <div id="disp14" class="disp" style="width:98%;height:85%;background: black;padding:5px;white-space: pre-wrap;" tabindex="0" >
                                 <textarea id="td14" class="td" name="" cols="40" rows="40"  style="width:100%;height:33%;background: darkgreen;color:white;
                                  line-height: 1.5em;box-sizing:border-box;outline: 2px solid red;">
-                                 </textarea>
-                                 <textarea id="td15" class="td" name="" cols="40" rows="40"  style="width:100%;height:33%;background: darkgreen;color:white;
-                                 line-height: 1.5em;box-sizing:border-box;outline: 2px solid red;">
-                                 </textarea>
-                                 <textarea id="td16" class="td" name="" cols="40" rows="40"  style="width:100%;height:33%;background: darkgreen;color:white;
-                                 line-height: 1.5em;box-sizing:border-box;outline: 2px solid red;">
-                                 </textarea>
+                                </textarea>
+                                 
                                
                            </div>
                            <div id="handle" style="position:absolute;bottom:0;left:0;
@@ -195,26 +190,26 @@
  					
  					 <div id="r6" class="row" style="height:140mm;height:10mm;margin-left: 22mm;border:;margin-top: 3px">
                             <div id="disp15" class="disp" style="position:relative;width:40%;height:20px;left:10mm ;top:;background:">
-                                  <input type="" name="wday" id="td17" class="td" value="12" style="width:70%;background: darkgreen;color:white;">
+                                  <input type="" name="wday" id="td15" class="td" value="" style="width:70%;background: darkgreen;color:white;">
                             </div>
                
                      </div>
 
                      <div id="r7" class="row" style="height:140mm;width:160mm;height:7mm;margin-left: 22mm;border:;margin-top: 3px">
                           <div id="disp16" class="disp" style="position:relative;width:60%;height:20px;left:70mm ;top:-5mm;background:">
-                                <input id="td18" type="text" name=""  class="td" value="13" style="width:70%;background: darkgreen;color:white;">
+                                <input id="td16" type="text" name=""  class="td" value="13" style="width:70%;background: darkgreen;color:white;">
                       
                           </div>
                      </div>
 
                      <div id="r8" class="row" style="height:7mm;width:160mm;margin-left: 22mm;border:;margin-top: 3px">
                           <div id="disp17" class="disp" style="position:relative;width:40%;height:20px;left:70mm ;top:-5mm;background:">
-                                 <input type="text" id="td19" name=""  class="td" value="14" style="width:70%;background: darkgreen;color:white;">
+                                 <input type="text" id="td17" name=""  class="td" value="14" style="width:70%;background: darkgreen;color:white;">
                           </div>
                      </div>
                      <div id="r9" class="row" style="height:7mm;width:160mm;margin-left: 22mm;border:;margin-top: 3px">
                           <div id="disp18" class="disp" style="position:relative;width:40%;height:20px;left:80mm ;top:-5mm;background:">
-                               <input type="text" id="td20" name="sdoct"  class="td" value="15"  style="width:70%;background: darkgreen;color:white;">      
+                               <input type="text" id="td18" name="sdoct"  class="td" value="15"  style="width:70%;background: darkgreen;color:white;">      
                           </div>
                      </div>
                      
@@ -244,125 +239,7 @@
         </div>
     </div>
     <didv id = "bot"></div>
-<!--======================================================================================================-->
-<!--    
-<div id="bot" class="z" style="width:100%;height:fit-content;border:10px solid blue;background:black;color:white">
-      <div id="indexBox" class="" style="width:100%;height:40px;border:;background:black;color:white;display:flex">
-        
-      </div>
-      <div id="" class="" style="width:100%;height:40px;border:;background:;color:white;display:flex;position:relative">
-         <div id="forward" class="forward" style="width:100px;height:70%;
-         border:1px solid white;font-size:16px;color:white;background:black
-         ;position:absolute;left:90%;top:5px;border-radius:10px;">　帳票作成
-         </div>
-      </div>
-
-      <div id="instructionBox" class="midr0" style="width:100%;height:100px;border:1px solid white;background:;color:white;font-size:18px">instruction
-      
-      </div>
-      <div id="inpBox" class="z1r1" style="width:98%;height:400px;border:;overflow-y:scroll;">
     
-          <?php 
-              
-               for($i=0;$i<18;$i++)
-                {
-                    
-                    echo '<div id="frame'.$i.'" class="frame" style="width:98%;height:98%;border:2px solid yellow;background:black;color:white">';
-                 
-                        
-                        
-                        switch ($i) {
-                            
-                            case 0:
-                                $contentClassObj->itemAlone($i);
-                                break;
-                               
-                            case 1:
-                            
-                                $contentClassObj->nameAlone($i);
-                                break;
-                                
-                            case 2:
-                            
-                                $contentClassObj->itemReferrence($i);
-                                break;
-                            case 3:
-                            
-                                $contentClassObj->dateMaker($i); 
-                                break;
-                                
-                            case 4:
-                            
-                                 $contentClassObj->itemAlone($i);
-                                break;
-                            case 5:
-                            
-                                 $contentClassObj->itemAlone($i); 
-                                break;
-                                
-                            case 6:
-                            
-                                 $contentClassObj->itemAlone($i); 
-                                break;
-                            case 7:
-                            
-                                 $contentClassObj->itemReferrence($i);
-                                break;
-                            case 8:
-                            
-                                $contentClassObj->itemReferrence($i);
-                                break;
-                               
-                            case 9:
-                            
-                                $contentClassObj->itemReferrence($i);
-                                break;
-                                
-                            case 10:
-                            
-                                $contentClassObj->itemReferrence($i);
-                                break;
-                            case 11:
-                                
-                                $contentClassObj->documentMaker($i);
-                                break;
 
-                            case 12:
-                                $contentClassObj->dateMaker($i);
-                                break;
-                                
- 
-                            case 13:
-
-                                $contentClassObj->itemReferrence($i);
-                                break;
-                                
-                            case 14:
-                             
-                                $contentClassObj->itemReferrence($i);
-                                break;
-                                
-                            case 15:
-                                
-                                $contentClassObj->itemReferrence($i);
-                                break;
-                            default:
-                                break;
-                               
- 
-                         }  
-                                    
-                   echo '</div>';    
-                }
-                     
-                   
-  
-               
-             
-                ?>
-        </div> 
-           
-     </div>
-                            -->
  </body>
  </html>

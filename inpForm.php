@@ -31,7 +31,7 @@
             }
             echo '</div>';
             echo '<div id="secondRow" style="width:100%;height:40px;display:flex">';
-            for($j=10;$j<18;$j++){
+            for($j=10;$j<19;$j++){
                 echo '<div id="ind'.$j.'" class="ind">'.$itemIndex[$j].'</div>';
             }
             echo '</div>';
@@ -65,7 +65,7 @@
                             case 4:
                             case 5:
                             case 6:
-                            case 15:
+                            case 14:
                             case 16:
                                 $contentClassObj->itemAlone($i);
                                 break;
@@ -77,6 +77,7 @@
                             case 11:
                             case 12:
                             case 13:
+                            
                             case 18:
                             case 19:
                             case 20:
@@ -84,7 +85,7 @@
                                 $contentClassObj->itemReferrence($i);
                                 break;
                             case 3:
-                            case 14:
+                            case 15:
                             
                                 $obj = new MakeCalendar($i,600,'350');
                                 $obj->calendarMaker(); 

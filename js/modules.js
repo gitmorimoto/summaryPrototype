@@ -179,3 +179,99 @@ export function stage4()
     botObj.style.display = 'none';
 
 }
+export function getForwardData(){
+    console.log('getForwardData()');
+    fetch('getForwardData.php')
+    .then(res=>res.json())
+    .then(data => {
+        console.log(data);
+        let tdObj = document.querySelectorAll('.td');
+        tdObj.forEach((t,index)=>{
+            t.value = data[index];
+        })
+    })
+    .catch(error => {
+    console.error(error);
+  });
+
+}
+
+export function confirm(){
+    ///////////////////////confirm///////////////////////////////////////////////////////////////
+    const confObj=document.getElementById('conf');
+    let Text = "";
+    confObj.addEventListener('click',function(){ 
+        confObj.style.background="orange";
+        
+    
+        //--------------------------------------------------------------------------------------
+        const dispObj=document.querySelectorAll('.disp');
+        const tdObj=document.querySelectorAll('.td');
+        const tdArray = [];
+        dispObj.forEach((d,index)=>{
+            d.textContent= tdObj[index].value;
+            tdArray.push(tdObj[index].value);
+            if(index==11){
+                Text = tdObj[index].value;
+            }
+            
+        })
+        
+        console.log(tdArray);
+        keepTemp(tdArray);
+
+        let age=calAge(tdArray[3],tdArray[14]);
+        let day3 = toWareki(tdArray[3]);
+        let day14 = toWareki(tdArray[14]);
+        tdArray[3]=day3;
+        tdArray[14]=day12;
+        tdArray[4]=age;
+        console.log('age='+age);
+
+        for(let j=0;j<16;j++ )
+        {
+            keepDisp[j] = dispObj[j].innerHTML;
+            console.log('keepDisp['+j+']='+keepDisp[j]);
+            if(j==11)
+            {
+                console.log('keepDisp[11]='+keepDisp[11]);
+                input = dispObj[11].querySelector('textarea');
+                const fixed = input.value.replace(/\\n/g, '\n');
+                dispObj[11].textContent=fixed;
+            }else{
+                dispObj[j].textContent=tdArray[j];
+            }
+            
+        }
+        paginateText(
+        Text,
+        [
+            document.getElementById("disp11"),
+            document.getElementById("disp11attached")
+        ]
+        );
+    })
+    function keepTemp(tdArray)
+    {
+        //console.log(tdArray);
+        fetch('makeTempData.php',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+                body: JSON.stringify(tdArray)
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error("ネットワークのエラーが発生しました");
+            }
+                return response.json();
+        })
+        .then(data => {
+            console.log(data);
+        
+        })
+        .catch(error => {
+            console.error(error);
+        })     
+    }
+}
